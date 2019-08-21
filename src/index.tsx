@@ -68,33 +68,31 @@ export class App extends React.Component<AppProps, AppState> {
   onChange:changeHandler = (index, value) => {
     consoleLog('onChange');
     consoleLog('index:'+index + ', value:' + value);
-
-    this.setState((prevState) => {
-      let values = prevState.values;
-      values[index] = value;
-      this.appryStateToField(values);
-      return { values: values };
-    })
+    let values = this.state.values;
+    values[index] = value;
+    this.appryStateToField(values);
+      
+    this.state = { values: values };
     
   };
 
   onDelete:deleteHandler = (index) => {
     consoleLog('onDelete');
     consoleLog('index:'+index);
-    this.setState((prevState) => {
-      let values = prevState.values.splice(index, 1);
-      this.appryStateToField(values);
-      return { values: values };
-    })
+    let values = this.state.values.splice(index, 1);
+    this.state = {
+      values: values
+    }
+    this.appryStateToField(values);
   };
 
   onSortEnd:SortEndHandler = ({oldIndex, newIndex}) => {
     consoleLog('onSortEnd');
-    this.setState((prevState) => {
-      let values = arrayMove(prevState.values, oldIndex, newIndex);
-      this.appryStateToField(values);
-      return { values: values };
-    });
+    let values = arrayMove(this.state.values, oldIndex, newIndex);
+    this.appryStateToField(values);
+    this.state = {
+      values: values
+    };
   };
 
 
