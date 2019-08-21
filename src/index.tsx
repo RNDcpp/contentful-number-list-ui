@@ -34,8 +34,10 @@ export class App extends React.Component<AppProps, AppState> {
       initial_values = []
     }
     consoleLog(initial_values.toString());
+    consoleLog('type='+typeof(initial_values));
+
     this.setState({
-      values: initial_values;
+      values: initial_values
     });
   }
 
