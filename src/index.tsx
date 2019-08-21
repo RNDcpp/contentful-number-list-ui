@@ -91,5 +91,6 @@ export class App extends React.Component<AppProps, AppState> {
 }
 
 init(sdk => {
+  console.log('init');
   render(<App sdk={sdk as FieldExtensionSDK} />, document.getElementById('root'));
 });
