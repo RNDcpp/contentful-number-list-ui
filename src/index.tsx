@@ -79,7 +79,8 @@ export class App extends React.Component<AppProps, AppState> {
   onDelete:deleteHandler = (index) => {
     consoleLog('onDelete');
     consoleLog('index:'+index);
-    let values = this.state.values.splice(index, 1);
+    let values = this.state.values
+    values.splice(index, 1);
     this.state = {
       values: values
     }
