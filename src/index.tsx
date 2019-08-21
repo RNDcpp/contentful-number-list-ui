@@ -27,9 +27,13 @@ export class App extends React.Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
     consoleLog(props.sdk.field.getValue());
-    this.state = {
-      values: [1,2,3,4]
-    };
+    let initial_values = props.sdk.field.getValue();
+    if(initial_values == null) {
+      initial_values = []
+    }
+    this.setState({
+      values: initial_values;
+    });
   }
 
   detachExternalChangeHandler: Function | null = null;
