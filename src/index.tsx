@@ -48,6 +48,7 @@ export class App extends React.Component<AppProps, AppState> {
   }
   
   appryStateToField(values:Array<number>) {
+    consoleLog('applyField' + values);
     this.props.sdk.field.setValue(values);
   }
 
@@ -57,6 +58,8 @@ export class App extends React.Component<AppProps, AppState> {
 
   onChange:changeHandler = (index, value) => {
     consoleLog('onChange');
+    consoleLog('index:'+index + ', value:' + value);
+
     this.setState((prevState) => {
       let values = prevState.values;
       values[index] = value;
@@ -68,6 +71,7 @@ export class App extends React.Component<AppProps, AppState> {
 
   onDelete:deleteHandler = (index) => {
     consoleLog('onDelete');
+    consoleLog('index:'+index);
     this.setState((prevState) => {
       let values = prevState.values.splice(index, 1);
       this.appryStateToField(values);
