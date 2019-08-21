@@ -34,6 +34,8 @@ export class NumberInputPane extends React.Component<NumberInputProps, NumberInp
     return (
       <div>
         {this.props.index}
+        {this.props.value}
+        {this.state.value}
       </div>
     );
   };
