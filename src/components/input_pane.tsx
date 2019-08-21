@@ -27,7 +27,7 @@ export class NumberInputPane extends React.Component<NumberInputProps, NumberInp
 
   onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value:number = parseInt(e.currentTarget.value, 10);
-    this.props.changeHandler(this.props.index, this.props.value);
+    this.props.changeHandler(this.props.index, value);
   };
 
   render = () => {
