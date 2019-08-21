@@ -33,7 +33,13 @@ export class NumberInputPane extends React.Component<NumberInputProps, NumberInp
   render = () => {
     return (
       <div>
-        <TextInput
+        {this.props.index}
+      </div>
+    );
+  };
+}
+/*
+<TextInput
           width="large"
           type="number"
           value={this.state.value.toString()}
@@ -41,8 +47,4 @@ export class NumberInputPane extends React.Component<NumberInputProps, NumberInp
         />
         <Button
           onClick={this.onClick}
-        />
-      </div>
-    );
-  };
-}
+        />*/
