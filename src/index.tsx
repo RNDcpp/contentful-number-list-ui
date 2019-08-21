@@ -39,8 +39,8 @@ export class App extends React.Component<AppProps, AppState> {
     }
   }
   
-  appryStateToField() {
-    this.props.sdk.field.setValue(this.state.values);
+  appryStateToField(values:Array<number>) {
+    this.props.sdk.field.setValue(values);
   }
 
   onExternalChange = (values: Array<number>) => {
@@ -48,25 +48,32 @@ export class App extends React.Component<AppProps, AppState> {
   };
 
   onChange:changeHandler = (index, value) => {
-    this.state.values[index] = value;
-    this.setState((items) => ({
-      values: this.state.values
-    }))
-    this.appryStateToField();
+    console.log('onChange');
+    this.setState((prevState) => {
+      let values = prevState.values;
+      values[index] = value;
+      this.appryStateToField(values);
+      return { values: values };
+    })
+    
   };
 
   onDelete:deleteHandler = (index) => {
-    this.setState((items) => ({
-      values: this.state.values.splice(index, 1)
-    }))
-    this.appryStateToField();
+    console.log('onDelete');
+    this.setState((prevState) => {
+      let values = prevState.values.splice(index, 1);
+      this.appryStateToField(values);
+      return { values: values };
+    })
   };
 
   onSortEnd:SortEndHandler = ({oldIndex, newIndex}) => {
-    this.setState((items) => ({
-      values: arrayMove(this.state.values, oldIndex, newIndex),
-    }));
-    this.appryStateToField();
+    console.log('onSortEnd');
+    this.setState((prevState) => {
+      let values = arrayMove(prevState.values, oldIndex, newIndex);
+      this.appryStateToField(values);
+      return { values: values };
+    });
   };
 
 
