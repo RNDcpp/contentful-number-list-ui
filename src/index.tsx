@@ -28,9 +28,12 @@ export class App extends React.Component<AppProps, AppState> {
     super(props);
     consoleLog(props.sdk.field.getValue());
     let initial_values = props.sdk.field.getValue();
+    consoleLog(initial_values.toString());
     if(initial_values == null) {
+      consoleLog('initial_value is null');
       initial_values = []
     }
+    consoleLog(initial_values.toString());
     this.setState({
       values: initial_values;
     });
