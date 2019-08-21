@@ -19,8 +19,9 @@ interface AppState {
 export class App extends React.Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
+    console.log(props.sdk.field.getValue());
     this.state = {
-      values: props.sdk.field.getValue() || [1,2,3,4]
+      values: [1,2,3,4]
     };
   }
 
