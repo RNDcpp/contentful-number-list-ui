@@ -30,12 +30,8 @@ ul{
   margin:0;
   padding:0;
 }
-.btn {
-  color: #536171;
-  height:20px;
-  background-color:#e5ebed;
-}
 .id-number-input{
+  width:50%;
   display:inline-block;
 }
 .add-pane-btn{

@@ -107,8 +107,13 @@ export class App extends React.Component<AppProps, AppState> {
         distance={10}
         />
         <Button
-        className="add-pane-btn btn id-input-pane"
-        onClick={this.addValues}/>
+        className="add-pane-btn id-input-pane"
+        buttonType="muted"
+        size="large"
+        onClick={this.addValues}>
+          +
+        </Button>
+
       </div>
     );
   };

@@ -33,15 +33,18 @@ export class NumberInputPane extends React.Component<NumberInputProps, NumberInp
       <li className="id-input-pane">
         <TextInput
           className="id-number-input"
-          width="large"
+          width="full"
           type="number"
           value={this.props.value.toString()}
           onChange={this.onChange}
         />
         <Button
-          className="btn"
+          buttonType="muted"
+          size="large"
           onClick={this.onClick}
-        />
+        >
+          delete
+        </Button>
       </div>
     );
   };
