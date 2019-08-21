@@ -45,7 +45,7 @@ export class NumberInputPane extends React.Component<NumberInputProps, NumberInp
         >
           delete
         </Button>
-      </div>
+      </li>
     );
   };
 }
