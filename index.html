@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+		<script src="https://unpkg.com/contentful-ui-extensions-sdk@3"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+		<script>
+      window.contentfulExtension.init(function(api) {
+        var id_list_field = api.entry.fields.idList;
+        var id_list = document.getElementById("id_list");
+        var add_pane_btn = document.getElementById("add_pane_btn");
+        var title_input = document.getElementById("title_input");
+        title_input.value = api.entry.fields.title.getValue();
+        title_input.addEventListener('change',function(e){
+          api.entry.fields.title.setValue(title_input.value);
+        })
+        function applyIdListField(){
+          var id_list_ary = [];
+          var children = [].slice.call(id_list.children)
+          children.forEach(
+            function(elem){
+              var v = elem.firstElementChild.value;
+              v = parseInt(v,10);
+              if(!isNaN(v)){
+                id_list_ary.push(v);
+              }
+            });
+          id_list_field.setValue(id_list_ary);
+          console.log(id_list_field.getValue());
+        }
+        function createInputPane(parent, default_value=null){
+          var pane = document.createElement('li');
+          pane.setAttribute('class', 'id_input_pane');
+          var id_input = document.createElement('input');
+          if(default_value!==null){
+            id_input.setAttribute('value',default_value);
+          }
+          id_input.setAttribute('type','number');
+          id_input.setAttribute('class','id_number_input');
+          id_input.addEventListener('change', function(e){
+            applyIdListField();
+          });
+          var del_btn = document.createElement('input');
+          del_btn.setAttribute('value','delete');
+          del_btn.setAttribute('type','button');
+          del_btn.setAttribute('class','btn');
+          del_btn.addEventListener('click', function(e){
+            e.preventDefault();
+            console.log('hoge');
+            parent.removeChild(pane);
+            applyIdListField();
+          });
+          pane.appendChild(id_input);
+          pane.appendChild(del_btn);
+          parent.appendChild(pane);
+        }
+        document
+          .getElementById('field')
+          .addEventListener('submit',
+            function(event){
+              event.preventDefault();
+            }
+          );
+        Sortable.create(id_list, {
+          onEnd: function(e){
+            applyIdListField();
+          }
+        });
+        var initial_id_ary = id_list_field.getValue();
+        if(initial_id_ary != null){
+          initial_id_ary.forEach(function(e){
+            createInputPane(id_list, e);
+          });
+        }
+        console.log(id_list_field.getValue());
+        add_pane_btn.addEventListener('click',function(e){
+          createInputPane(id_list);
+        });
+      });
+		</script>
+    <style type="text/css">
+      html {
+        height: 700px;
+      }
+      html,
+      body,
+      div {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+      .container {
+        width:90%;
+        text-align:left;
+        padding-left:40px;
+      }
+      .id_input_pane{
+        left:0px;
+        width:100%;
+        border:solid;
+        border-color:#b4c3ca;
+        border-width:1px;
+        margin-bottom:2px;
+      }
+      li{
+        list-style-type:none;
+        margin:0;
+        padding:0;
+      }
+      ul{
+        margin:0;
+        padding:0;
+      }
+      .btn {
+        color: #536171;
+        height:20px;
+        background-color:#e5ebed;
+      }
+      #field {
+        width: 100%;
+      }
+      .id_number_input{
+        width:50%;
+        height:20px;
+        display:inline-block;
+      }
+      #add_pane_btn{
+        display:inline-block;
+      }
+      .field-pane{
+        border-left: solid;
+        border-color: #e5ebed;
+        border-width: 5px;
+        margin-left: 20px;
+        padding-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+		<form id='field'>
+  		<div class = 'container'>
+        <div class = 'container'>
+        <div class = 'field-pane'>
+          <h3>title</h3>
+          <input type='text' name='title' id='title_input'>
+        </div>
+        <div class = 'field-pane'>
+          <h3>ID List</h3>
+          <ul id='id_list'>
+          </ul>
+          <input type='button' id='add_pane_btn' class='btn id_input_pane' value='+'>
+        </div>
+  		</div>
+		</form>
+  </body>
+</html>
+
