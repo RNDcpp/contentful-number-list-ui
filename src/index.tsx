@@ -69,9 +69,7 @@ export class App extends React.Component<AppProps, AppState> {
     consoleLog('index:'+index + ', value:' + value);
     let values = this.state.values;
     values[index] = value;
-    this.appryStateToField(values);
-      
-    this.state = { values: values };
+    this.setState({ values: values }, ()=>{this.appryStateToField(this.state.values);});
     
   };
 
@@ -80,19 +78,13 @@ export class App extends React.Component<AppProps, AppState> {
     consoleLog('index:'+index);
     let values = this.state.values
     values.splice(index, 1);
-    this.state = {
-      values: values
-    }
-    this.appryStateToField(values);
+    this.setState({ values: values }, ()=>{this.appryStateToField(this.state.values);});
   };
 
   onSortEnd:SortEndHandler = ({oldIndex, newIndex}) => {
     consoleLog('onSortEnd');
     let values = arrayMove(this.state.values, oldIndex, newIndex);
-    this.appryStateToField(values);
-    this.state = {
-      values: values
-    };
+    this.setState({ values: values }, ()=>{this.appryStateToField(this.state.values);});
   };
 
 
