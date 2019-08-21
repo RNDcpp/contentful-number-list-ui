@@ -7,6 +7,7 @@ import { changeHandler, deleteHandler } from './components/input_pane';
 import { SortableList } from './components/id_list';
 import { SortEndHandler } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
+import { Button } from '@contentful/forma-36-react-components';
 const consoleLog = (hoge:string) => {
   let v = document.createElement('div');
   v.textContent = hoge;
@@ -73,6 +74,13 @@ export class App extends React.Component<AppProps, AppState> {
     
   };
 
+  addValues = () => {
+    consoleLog('addValues');
+    let values = this.state.values;
+    values.push(0);
+    this.setState({values: values}, ()=>{this.appryStateToField(this.state.values);});
+  }
+
   onDelete:deleteHandler = (index) => {
     consoleLog('onDelete');
     consoleLog('index:'+index);
@@ -90,13 +98,17 @@ export class App extends React.Component<AppProps, AppState> {
 
   render = () => {
     return (
-      <SortableList
-      values={this.state.values}
-      onSortEnd={this.onSortEnd}
-      deleteHandler={this.onDelete}
-      changeHandler={this.onChange}
-      distance={10}
-      />
+      <div>
+        <SortableList
+        values={this.state.values}
+        onSortEnd={this.onSortEnd}
+        deleteHandler={this.onDelete}
+        changeHandler={this.onChange}
+        distance={10}
+        />
+        <Button
+        onClick={this.addValues}/>
+      </div>
     );
   };
 }
