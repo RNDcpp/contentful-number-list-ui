@@ -7,7 +7,14 @@ import { changeHandler, deleteHandler } from './components/input_pane';
 import { SortableList } from './components/id_list';
 import { SortEndHandler } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
-
+const consoleLog = (hoge:string) => {
+  let v = document.createElement('div');
+  v.textContent = hoge;
+  let p = document.getElementById('root')
+  if(p != null){
+    p.appendChild(v);
+  }
+};
 interface AppProps {
   sdk: FieldExtensionSDK;
 }
@@ -19,7 +26,7 @@ interface AppState {
 export class App extends React.Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
-    console.log(props.sdk.field.getValue());
+    consoleLog(props.sdk.field.getValue());
     this.state = {
       values: [1,2,3,4]
     };
@@ -49,7 +56,7 @@ export class App extends React.Component<AppProps, AppState> {
   };
 
   onChange:changeHandler = (index, value) => {
-    console.log('onChange');
+    consoleLog('onChange');
     this.setState((prevState) => {
       let values = prevState.values;
       values[index] = value;
@@ -60,7 +67,7 @@ export class App extends React.Component<AppProps, AppState> {
   };
 
   onDelete:deleteHandler = (index) => {
-    console.log('onDelete');
+    consoleLog('onDelete');
     this.setState((prevState) => {
       let values = prevState.values.splice(index, 1);
       this.appryStateToField(values);
@@ -69,7 +76,7 @@ export class App extends React.Component<AppProps, AppState> {
   };
 
   onSortEnd:SortEndHandler = ({oldIndex, newIndex}) => {
-    console.log('onSortEnd');
+    consoleLog('onSortEnd');
     this.setState((prevState) => {
       let values = arrayMove(prevState.values, oldIndex, newIndex);
       this.appryStateToField(values);
@@ -91,6 +98,6 @@ export class App extends React.Component<AppProps, AppState> {
 }
 
 init(sdk => {
-  console.log('init');
+  consoleLog('init');
   render(<App sdk={sdk as FieldExtensionSDK} />, document.getElementById('root'));
 });
