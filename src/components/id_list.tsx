@@ -19,7 +19,12 @@ export const SortableList = SortableContainer((props:SotableListProps) => {
   return (
     <ul>
       {props.values.map((v, index) => (
-        <SortableItem key={`item-${index}`} index={index} value={v} changeHandler={props.changeHandler} deleteHandler={props.deleteHandler} />
+        <SortableItem 
+          key={`item-${index}`}
+          index={index} value={v}
+          changeHandler={props.changeHandler}
+          deleteHandler={props.deleteHandler}
+        />
       ))}
     </ul>
   );

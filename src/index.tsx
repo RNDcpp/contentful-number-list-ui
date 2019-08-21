@@ -92,6 +92,7 @@ export class App extends React.Component<AppProps, AppState> {
       onSortEnd={this.onSortEnd}
       deleteHandler={this.onDelete}
       changeHandler={this.onChange}
+      distance={10}
       />
     );
   };
