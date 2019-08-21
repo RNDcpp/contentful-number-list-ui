@@ -53,7 +53,7 @@ export class App extends React.Component<AppProps, AppState> {
   }
 
   onExternalChange = (values: Array<number>) => {
-    this.setState({ values });
+    //this.setState({ values });
   };
 
   onChange:changeHandler = (index, value) => {
