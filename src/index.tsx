@@ -36,9 +36,9 @@ export class App extends React.Component<AppProps, AppState> {
     consoleLog(initial_values.toString());
     consoleLog('type='+typeof(initial_values));
 
-    this.setState({
+    this.state = {
       values: initial_values
-    });
+    };
   }
 
   detachExternalChangeHandler: Function | null = null;
