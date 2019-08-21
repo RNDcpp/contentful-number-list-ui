@@ -30,14 +30,16 @@ export class NumberInputPane extends React.Component<NumberInputProps, NumberInp
 
   render = () => {
     return (
-      <div>
+      <li className="id-input-pane">
         <TextInput
+          className="id-number-input"
           width="large"
           type="number"
           value={this.props.value.toString()}
           onChange={this.onChange}
         />
         <Button
+          className="btn"
           onClick={this.onClick}
         />
       </div>

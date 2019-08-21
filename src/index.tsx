@@ -98,7 +98,7 @@ export class App extends React.Component<AppProps, AppState> {
 
   render = () => {
     return (
-      <div>
+      <div className="container">
         <SortableList
         values={this.state.values}
         onSortEnd={this.onSortEnd}
@@ -107,6 +107,7 @@ export class App extends React.Component<AppProps, AppState> {
         distance={10}
         />
         <Button
+        className="add-pane-btn btn id-input-pane"
         onClick={this.addValues}/>
       </div>
     );
