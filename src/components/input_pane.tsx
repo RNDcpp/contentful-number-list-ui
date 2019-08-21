@@ -19,8 +19,6 @@ export class NumberInputPane extends React.Component<NumberInputProps, NumberInp
     this.state = {value: this.props.value};
   }
 
-  detachExternalChangeHandler: Function | null = null;
-
   onClick = (e: React.MouseEvent<HTMLInputElement>) => {
     this.props.deleteHandler(this.props.index);
   };
@@ -33,20 +31,16 @@ export class NumberInputPane extends React.Component<NumberInputProps, NumberInp
   render = () => {
     return (
       <div>
-        {this.props.index}
-        {this.props.value}
-        {this.state.value}
-      </div>
-    );
-  };
-}
-/*
-<TextInput
+        <TextInput
           width="large"
           type="number"
-          value={this.state.value.toString()}
+          value={this.props.value.toString()}
           onChange={this.onChange}
         />
         <Button
           onClick={this.onClick}
-        />*/
+        />
+      </div>
+    );
+  };
+}
