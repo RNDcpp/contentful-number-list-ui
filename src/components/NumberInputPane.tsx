@@ -16,12 +16,11 @@ export interface NumberInputState {
 }
 
 export class NumberInputPane extends React.Component<NumberInputProps, NumberInputState> {
-  constructor(props: NumberInputProps) {
-    super(props);
-    this.state = { value: this.props.value };
-  }
+  readonly state = {
+    value: this.props.value
+  };
 
-  onClick = (e: React.MouseEvent<HTMLInputElement>) => {
+  onClick = () => {
     this.props.deleteHandler(this.props.index);
   };
 
