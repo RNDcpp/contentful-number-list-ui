@@ -39,7 +39,7 @@ export class App extends React.Component<AppProps, AppState> {
     }
   }
 
-  appryStateToField(values: Array<number>) {
+  applyStateToField(values: Array<number>) {
     this.props.sdk.field.setValue(values);
   }
 
@@ -49,7 +49,7 @@ export class App extends React.Component<AppProps, AppState> {
     });
 
     this.setState({ values }, () => {
-      this.appryStateToField(this.state.values);
+      this.applyStateToField(this.state.values);
     });
   };
 
@@ -59,7 +59,7 @@ export class App extends React.Component<AppProps, AppState> {
     });
 
     this.setState({ values }, () => {
-      this.appryStateToField(this.state.values);
+      this.applyStateToField(this.state.values);
     });
   };
 
@@ -69,7 +69,7 @@ export class App extends React.Component<AppProps, AppState> {
     });
 
     this.setState({ values }, () => {
-      this.appryStateToField(this.state.values);
+      this.applyStateToField(this.state.values);
     });
   };
 
@@ -77,7 +77,7 @@ export class App extends React.Component<AppProps, AppState> {
     const values = arrayMove(this.state.values, oldIndex, newIndex);
 
     this.setState({ values }, () => {
-      this.appryStateToField(this.state.values);
+      this.applyStateToField(this.state.values);
     });
   };
 
