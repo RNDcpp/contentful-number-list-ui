@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { init, FieldExtensionSDK } from 'contentful-ui-extensions-sdk';
-import { ChangeHandler, DeleteHandler } from './components/input_pane';
-import { SortableList } from './components/id_list';
+import { ChangeHandler, DeleteHandler } from './components/NumberInputPane';
+import { SortableList } from './components/SortableList';
 import { SortEndHandler } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
 import { Button } from '@contentful/forma-36-react-components';
