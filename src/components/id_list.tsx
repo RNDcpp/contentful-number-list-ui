@@ -1,5 +1,5 @@
 import React from 'react';
-import { NumberInputPane, NumberInputProps, changeHandler, deleteHandler } from './input_pane';
+import { NumberInputPane, NumberInputProps, ChangeHandler, DeleteHandler } from './input_pane';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
 const SortableItem = SortableElement((value: NumberInputProps) => (
@@ -13,8 +13,8 @@ const SortableItem = SortableElement((value: NumberInputProps) => (
 
 export interface SotableListProps {
   values: Array<number>;
-  changeHandler: changeHandler;
-  deleteHandler: deleteHandler;
+  changeHandler: ChangeHandler;
+  deleteHandler: DeleteHandler;
 }
 
 export const SortableList = SortableContainer((props: SotableListProps) => {

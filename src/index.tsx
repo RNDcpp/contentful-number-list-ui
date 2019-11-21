@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { init, FieldExtensionSDK } from 'contentful-ui-extensions-sdk';
-import { changeHandler, deleteHandler } from './components/input_pane';
+import { ChangeHandler, DeleteHandler } from './components/input_pane';
 import { SortableList } from './components/id_list';
 import { SortEndHandler } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
@@ -54,7 +54,7 @@ export class App extends React.Component<AppProps, AppState> {
     //this.setState({ values });
   };
 
-  onChange: changeHandler = (index, value) => {
+  onChange: ChangeHandler = (index, value) => {
     let values = this.state.values;
     values[index] = value;
     this.setState({ values: values }, () => {
@@ -70,7 +70,7 @@ export class App extends React.Component<AppProps, AppState> {
     });
   };
 
-  onDelete: deleteHandler = index => {
+  onDelete: DeleteHandler = index => {
     let values = this.state.values;
     values.splice(index, 1);
     this.setState({ values: values }, () => {

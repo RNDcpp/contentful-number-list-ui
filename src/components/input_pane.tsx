@@ -1,8 +1,8 @@
 import React from 'react';
 import { TextInput, Button } from '@contentful/forma-36-react-components';
 
-export type changeHandler = (index: number, value: number) => void;
-export type deleteHandler = (index: number) => void;
+export type ChangeHandler = (index: number, value: number) => void;
+export type DeleteHandler = (index: number) => void;
 
 export interface NumberInputProps {
   index: number;
