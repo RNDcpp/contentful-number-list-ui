@@ -7,8 +7,8 @@ export type DeleteHandler = (index: number) => void;
 export interface NumberInputProps {
   index: number;
   value: number;
-  changeHandler: (index: number, value: number) => void;
-  deleteHandler: (index: number) => void;
+  changeHandler: ChangeHandler;
+  deleteHandler: DeleteHandler;
 }
 
 export interface NumberInputState {
