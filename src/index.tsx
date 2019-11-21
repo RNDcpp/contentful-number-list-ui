@@ -20,8 +20,8 @@ export class App extends React.Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
     let initial_values = props.sdk.field.getValue();
-    if(initial_values == null) {
-      initial_values = []
+    if (initial_values == null) {
+      initial_values = [];
     }
 
     this.state = {
@@ -43,8 +43,8 @@ export class App extends React.Component<AppProps, AppState> {
       this.detachExternalChangeHandler();
     }
   }
-  
-  appryStateToField(values:Array<number>) {
+
+  appryStateToField(values: Array<number>) {
     this.props.sdk.field.setValue(values);
   }
 
@@ -52,49 +52,54 @@ export class App extends React.Component<AppProps, AppState> {
     //this.setState({ values });
   };
 
-  onChange:changeHandler = (index, value) => {
+  onChange: changeHandler = (index, value) => {
     let values = this.state.values;
     values[index] = value;
-    this.setState({ values: values }, ()=>{this.appryStateToField(this.state.values);});
-    
+    this.setState({ values: values }, () => {
+      this.appryStateToField(this.state.values);
+    });
   };
 
   addValues = () => {
     let values = this.state.values;
     values.push(0);
-    this.setState({values: values}, ()=>{this.appryStateToField(this.state.values);});
-  }
+    this.setState({ values: values }, () => {
+      this.appryStateToField(this.state.values);
+    });
+  };
 
-  onDelete:deleteHandler = (index) => {
-    let values = this.state.values
+  onDelete: deleteHandler = index => {
+    let values = this.state.values;
     values.splice(index, 1);
-    this.setState({ values: values }, ()=>{this.appryStateToField(this.state.values);});
+    this.setState({ values: values }, () => {
+      this.appryStateToField(this.state.values);
+    });
   };
 
-  onSortEnd:SortEndHandler = ({oldIndex, newIndex}) => {
+  onSortEnd: SortEndHandler = ({ oldIndex, newIndex }) => {
     let values = arrayMove(this.state.values, oldIndex, newIndex);
-    this.setState({ values: values }, ()=>{this.appryStateToField(this.state.values);});
+    this.setState({ values: values }, () => {
+      this.appryStateToField(this.state.values);
+    });
   };
-
 
   render = () => {
     return (
       <div className="container">
         <SortableList
-        values={this.state.values}
-        onSortEnd={this.onSortEnd}
-        deleteHandler={this.onDelete}
-        changeHandler={this.onChange}
-        distance={10}
+          values={this.state.values}
+          onSortEnd={this.onSortEnd}
+          deleteHandler={this.onDelete}
+          changeHandler={this.onChange}
+          distance={10}
         />
         <Button
-        className="add-pane-btn id-input-pane"
-        buttonType="muted"
-        size="large"
-        onClick={this.addValues}>
+          className="add-pane-btn id-input-pane"
+          buttonType="muted"
+          size="large"
+          onClick={this.addValues}>
           +
         </Button>
-
       </div>
     );
   };
