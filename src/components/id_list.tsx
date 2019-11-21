@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { NumberInputPane, NumberInputProps, changeHandler, deleteHandler } from './input_pane';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 

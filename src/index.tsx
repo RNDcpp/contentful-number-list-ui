@@ -1,13 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 import { init, FieldExtensionSDK } from 'contentful-ui-extensions-sdk';
-import '@contentful/forma-36-react-components/dist/styles.css';
-import './index.css';
 import { changeHandler, deleteHandler } from './components/input_pane';
 import { SortableList } from './components/id_list';
 import { SortEndHandler } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
 import { Button } from '@contentful/forma-36-react-components';
+
+import '@contentful/forma-36-react-components/dist/styles.css';
+import './index.css';
+
 interface AppProps {
   sdk: FieldExtensionSDK;
 }
