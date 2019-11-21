@@ -19,17 +19,9 @@ interface AppState {
 }
 
 export class App extends React.Component<AppProps, AppState> {
-  constructor(props: AppProps) {
-    super(props);
-    let initial_values = props.sdk.field.getValue();
-    if (initial_values == null) {
-      initial_values = [];
-    }
-
-    this.state = {
-      values: initial_values
-    };
-  }
+  readonly state: AppState = {
+    values: this.props.sdk.field.getValue() ?? []
+  };
 
   detachExternalChangeHandler: Function | null = null;
 
@@ -37,7 +29,7 @@ export class App extends React.Component<AppProps, AppState> {
     this.props.sdk.window.startAutoResizer();
 
     // Handler for external field value changes (e.g. when multiple authors are working on the same entry).
-    this.detachExternalChangeHandler = this.props.sdk.field.onValueChanged(this.onExternalChange);
+    this.detachExternalChangeHandler = this.props.sdk.field.onValueChanged(() => void 0);
   }
 
   componentWillUnmount() {
@@ -50,12 +42,8 @@ export class App extends React.Component<AppProps, AppState> {
     this.props.sdk.field.setValue(values);
   }
 
-  onExternalChange = (values: Array<number>) => {
-    //this.setState({ values });
-  };
-
   onChange: ChangeHandler = (index, value) => {
-    let values = this.state.values;
+    const values = this.state.values;
     values[index] = value;
     this.setState({ values: values }, () => {
       this.appryStateToField(this.state.values);
@@ -63,15 +51,15 @@ export class App extends React.Component<AppProps, AppState> {
   };
 
   addValues = () => {
-    let values = this.state.values;
+    const values = this.state.values;
     values.push(0);
     this.setState({ values: values }, () => {
       this.appryStateToField(this.state.values);
     });
   };
 
-  onDelete: DeleteHandler = index => {
-    let values = this.state.values;
+  onDelete: DeleteHandler = (index: number) => {
+    const values = this.state.values;
     values.splice(index, 1);
     this.setState({ values: values }, () => {
       this.appryStateToField(this.state.values);
@@ -79,7 +67,7 @@ export class App extends React.Component<AppProps, AppState> {
   };
 
   onSortEnd: SortEndHandler = ({ oldIndex, newIndex }) => {
-    let values = arrayMove(this.state.values, oldIndex, newIndex);
+    const values = arrayMove(this.state.values, oldIndex, newIndex);
     this.setState({ values: values }, () => {
       this.appryStateToField(this.state.values);
     });
