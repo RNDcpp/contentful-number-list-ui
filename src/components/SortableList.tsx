@@ -2,12 +2,12 @@ import React from 'react';
 import { NumberInputPane, NumberInputProps, ChangeHandler, DeleteHandler } from './NumberInputPane';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
-const SortableItem = SortableElement((value: NumberInputProps) => (
+const SortableItem = SortableElement((props: NumberInputProps) => (
   <NumberInputPane
-    index={value.index}
-    value={value.value}
-    changeHandler={value.changeHandler}
-    deleteHandler={value.deleteHandler}
+    index={props.index}
+    value={props.value}
+    changeHandler={props.changeHandler}
+    deleteHandler={props.deleteHandler}
   />
 ));
 
