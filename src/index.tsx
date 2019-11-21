@@ -1,3 +1,4 @@
+import { produce } from 'immer';
 import React from 'react';
 import { render } from 'react-dom';
 import { init, FieldExtensionSDK } from 'contentful-ui-extensions-sdk';
@@ -43,32 +44,39 @@ export class App extends React.Component<AppProps, AppState> {
   }
 
   onChange: ChangeHandler = (index, value) => {
-    const values = this.state.values;
-    values[index] = value;
-    this.setState({ values: values }, () => {
+    const values = produce(this.state.values, values => {
+      values[index] = value;
+    });
+
+    this.setState({ values }, () => {
       this.appryStateToField(this.state.values);
     });
   };
 
   addValues = () => {
-    const values = this.state.values;
-    values.push(0);
-    this.setState({ values: values }, () => {
+    const values = produce(this.state.values, values => {
+      values.push(0);
+    });
+
+    this.setState({ values }, () => {
       this.appryStateToField(this.state.values);
     });
   };
 
   onDelete: DeleteHandler = (index: number) => {
-    const values = this.state.values;
-    values.splice(index, 1);
-    this.setState({ values: values }, () => {
+    const values = produce(this.state.values, values => {
+      values.splice(index, 1);
+    });
+
+    this.setState({ values }, () => {
       this.appryStateToField(this.state.values);
     });
   };
 
   onSortEnd: SortEndHandler = ({ oldIndex, newIndex }) => {
     const values = arrayMove(this.state.values, oldIndex, newIndex);
-    this.setState({ values: values }, () => {
+
+    this.setState({ values }, () => {
       this.appryStateToField(this.state.values);
     });
   };
