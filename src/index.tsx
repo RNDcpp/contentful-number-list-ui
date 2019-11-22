@@ -19,6 +19,8 @@ interface AppState {
   values: Array<number>;
 }
 
+const isNaN = (num: unknown) => typeof num === 'number' && num !== num;
+
 export class App extends React.Component<AppProps, AppState> {
   readonly state: AppState = {
     values: this.props.sdk.field.getValue() ?? []
@@ -45,6 +47,10 @@ export class App extends React.Component<AppProps, AppState> {
 
   onChange: ChangeHandler = (index, value) => {
     const values = produce(this.state.values, values => {
+      if (isNaN(value)) {
+        return;
+      }
+
       values[index] = value;
     });
 

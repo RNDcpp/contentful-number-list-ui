@@ -5,7 +5,10 @@ export type ChangeHandler = (index: number, value: number) => void;
 export type DeleteHandler = (index: number) => void;
 
 export interface NumberInputProps {
-  index: number;
+  /**
+   * the "index" prop is reserved by react-sortable-hoc
+   */
+  order: number;
   value: number;
   changeHandler: ChangeHandler;
   deleteHandler: DeleteHandler;
@@ -21,12 +24,12 @@ export class NumberInputPane extends React.Component<NumberInputProps, NumberInp
   };
 
   onClick = () => {
-    this.props.deleteHandler(this.props.index);
+    this.props.deleteHandler(this.props.order);
   };
 
   onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value: number = parseInt(e.currentTarget.value, 10);
-    this.props.changeHandler(this.props.index, value);
+    const value = parseInt(e.currentTarget.value, 10);
+    this.props.changeHandler(this.props.order, value);
   };
 
   render = () => {
