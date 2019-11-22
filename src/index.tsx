@@ -20,6 +20,7 @@ interface AppState {
 }
 
 const isNaN = (num: unknown) => typeof num === 'number' && num !== num;
+const noop = () => null;
 
 export class App extends React.Component<AppProps, AppState> {
   readonly state: AppState = {
@@ -32,7 +33,7 @@ export class App extends React.Component<AppProps, AppState> {
     this.props.sdk.window.startAutoResizer();
 
     // Handler for external field value changes (e.g. when multiple authors are working on the same entry).
-    this.detachExternalChangeHandler = this.props.sdk.field.onValueChanged(() => void 0);
+    this.detachExternalChangeHandler = this.props.sdk.field.onValueChanged(noop);
   }
 
   componentWillUnmount() {
